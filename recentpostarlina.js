@@ -1,2 +1,110 @@
-// Recent Post by Info Arlina
-function recentpostinfoarlina(t){document.write('<ul class="recent_posts_arlina">');for(var e=0;e<numposts;e++){var r,n=t.feed.entry[e],i=n.title.$t;if(e==t.feed.entry.length)break;for(var o=0;o<n.link.length;o++){if("replies"==n.link[o].rel&&"text/html"==n.link[o].type)var m=n.link[o].title,u=n.link[o].href;if("alternate"==n.link[o].rel){r=n.link[o].href;break}}var l;try{l=n.media$thumbnail.url}catch(h){s=n.content.$t,a=s.indexOf("<img"),b=s.indexOf('src="',a),c=s.indexOf('"',b+5),d=s.substr(b+5,c-b-5),l=-1!=a&&-1!=b&&-1!=c&&""!=d?d:"https://2.bp.blogspot.com/-Q6S8qhkE33I/V0VwhvhULoI/AAAAAAAAHfQ/VZkkOgl_wX4X59EP31Jpl1swFsj6-n0TQCLcB/s1600/InfoArlina.png"}var w=n.published.$t,f=w.substring(0,4),p=w.substring(5,7),g=w.substring(8,10),v=new Array;if(v[1]="Jan",v[2]="Feb",v[3]="Mar",v[4]="Apr",v[5]="May",v[6]="Jun",v[7]="Jul",v[8]="Aug",v[9]="Sep",v[10]="Oct",v[11]="Nov",v[12]="Dec",document.write('<li class="clearfix">'),1==showpostthumbnails&&document.write('<span class="wrapinfo"><img class="recent_thumb" src="'+l+'"/></span>'),document.write('<b><a href="'+r+'" target ="_top">'+i+"</a></b>"),"content"in n)var y=n.content.$t;else if("summary"in n)var y=n.summary.$t;else var y="";var k=/<\S[^>]*>/g;if(y=y.replace(k,""),1==showpostsummary)if(y.length<numchars)document.write("<i>"),document.write(y),document.write("</i>");else{document.write("<i>"),y=y.substring(0,numchars);var _=y.lastIndexOf(" ");y=y.substring(0,_),document.write(y+"..."),document.write("</i>")}var x="",$=0;document.write,1==showpostdate&&(x=x+v[parseInt(p,10)]+"-"+g+" - "+f,$=1),1==showcommentnum&&(1==$&&(x+=" | "),"1 Comments"==m&&(m="1 Comment"),"0 Comments"==m&&(m="No Comments"),m='<a href="'+u+'" target ="_top">'+m+"</a>",x+=m,$=1),1==displaymore&&(1==$&&(x+=" | "),x=x+'<a href="'+r+'" class="url" target ="_top">More -></a>',$=1),document.write(x),document.write("</li>"),1==displayseparator&&e!=numposts-1&&document.write("<hr size=0.5>")}document.write("</ul>")}
+function recentpostinfoarlina(_data) {
+  document.write('<ul class="recent_posts_arlina">');
+  var j = 0;
+  for (; j < numposts; j++) {
+    var l;
+    var data = _data.feed.entry[j];
+    var video1title = data.title.$t;
+    if (j == _data.feed.entry.length) {
+      break;
+    }
+    var i = 0;
+    for (; i < data.link.length; i++) {
+      if ("replies" == data.link[i].rel && "text/html" == data.link[i].type) {
+        var spacingPx = data.link[i].title;
+        var entityUrl = data.link[i].href;
+      }
+      if ("alternate" == data.link[i].rel) {
+        l = data.link[i].href;
+        break;
+      }
+    }
+    var url_salt;
+    try {
+      url_salt = data.media$thumbnail.url;
+    } catch (h) {
+      s = data.content.$t;
+      a = s.indexOf("<img");
+      b = s.indexOf('src="', a);
+      c = s.indexOf('"', b + 5);
+      d = s.substr(b + 5, c - b - 5);
+      url_salt = -1 != a && -1 != b && -1 != c && "" != d ? d : "https://2.bp.blogspot.com/-Q6S8qhkE33I/V0VwhvhULoI/AAAAAAAAHfQ/VZkkOgl_wX4X59EP31Jpl1swFsj6-n0TQCLcB/s1600/InfoArlina.png";
+    }
+    var summary = data.published.$t;
+    var spacingRulerPx = summary.substring(0, 4);
+    var total_pageviews_raw = summary.substring(5, 7);
+    var _transactionName = summary.substring(8, 10);
+    var month = new Array;
+    if (month[1] = "Jan", month[2] = "Feb", month[3] = "Mar", month[4] = "Apr", month[5] = "May", month[6] = "Jun", month[7] = "Jul", month[8] = "Aug", month[9] = "Sep", month[10] = "Oct", month[11] = "Nov", month[12] = "Dec", document.write('<li class="clearfix">'), 1 == showpostthumbnails && document.write('<span class="wrapinfo"><img class="recent_thumb" src="' + url_salt + '"/></span>'), document.write('<b><a href="' + l + '" target ="_top">' + video1title + "</a></b>"), "content" in data) {
+      var id = data.content.$t;
+    } else {
+      if ("summary" in data) {
+        id = data.summary.$t;
+      } else {
+        id = "";
+      }
+    }
+    var VARS_RE = /<\S[^>]*>/g;
+    if (id = id.replace(VARS_RE, ""), 1 == showpostsummary) {
+      if (id.length < numchars) {
+        document.write("<i>");
+        document.write(id);
+        document.write("</i>");
+      } else {
+        document.write("<i>");
+        id = id.substring(0, numchars);
+        var indexOfSlash = id.lastIndexOf(" ");
+        id = id.substring(0, indexOfSlash);
+        document.write(id + "...");
+        document.write("</i>");
+      }
+    }
+    var x = "";
+  
+    var $ = 0;
+    document.write;
+    if (1 == showpostdate) {
+      
+      x = x + month[parseInt(total_pageviews_raw, 10)] + "-" + _transactionName + " - " + spacingRulerPx;
+      
+      $ = 1;
+    }
+    if (1 == showcommentnum) {
+      if (1 == $) {
+        
+        x = x + " | ";
+      }
+      if ("1 Comments" == spacingPx) {
+        
+        spacingPx = "1 Comment";
+      }
+      if ("0 Comments" == spacingPx) {
+        
+        spacingPx = "No Comments";
+      }
+      
+      spacingPx = '<a href="' + entityUrl + '" target ="_top">' + spacingPx + "</a>";
+      
+      x = x + spacingPx;
+      
+      $ = 1;
+    }
+    if (1 == displaymore) {
+      if (1 == $) {
+        
+        x = x + " | ";
+      }
+      
+      x = x + '<a href="' + l + '" class="url" target ="_top">More -></a>';
+      
+      $ = 1;
+    }
+    document.write(x);
+    document.write("</li>");
+    if (1 == displayseparator && j != numposts - 1) {
+      document.write("<hr size=0.5>");
+    }
+  }
+  document.write("</ul>");
+}
+;
